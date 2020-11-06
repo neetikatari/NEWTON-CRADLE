@@ -14,23 +14,23 @@ var roof, bob1, bob2, bob3, bob4, bob5, bob6, bob7
 var rope1, rope2, rope3, rope4, rope5, rope6, rope7
 
 function setup(){
-    var canvas = createCanvas(600,800);
+    var canvas = createCanvas(600,600);
    
     engine = Engine.create();
     world = engine.world;
 
     roof = new Roof(width/2, 50, 500, 30)
 
-    pos =roof.body.position.x/2
+    pos =roof.body.position.x
     dia = 60
     
 //distance between the centers of subsequent bob objects is equal to the diameter of the objects
 //bob3 is at center of roof bob2,bob4 are at distance of half of the diameter from bob3   
-    bob1 = new Bob(pos-dia, 400, dia)
-    bob2 = new Bob(pos-dia/2 , 400, dia)
+    bob1 = new Bob(pos-dia*2, 400, dia)
+    bob2 = new Bob(pos-dia , 400, dia)
     bob3 = new Bob(pos, 400, dia)
-    bob4 = new Bob(pos+dia/2 , 400, dia)
-    bob5 = new Bob(pos+dia, 400, dia)
+    bob4 = new Bob(pos+dia , 400, dia)
+    bob5 = new Bob(pos+dia*2, 400, dia)
    
 
 //all points are of the constraint are pointing to different places accoring the the bob
@@ -62,4 +62,9 @@ function draw(){
 
 }
 
+function keyPressed(){
+    if(keyCode == UP_ARROW){
+        Matter.Body.applyForce(bob1.body, bob1.body.position, {x:-285,y:200})
+    }
+}
 
